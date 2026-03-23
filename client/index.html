@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Network | Connect with Friends</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Register</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active">
+                <h2>Welcome Back</h2>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            
+            <!-- Register Form -->
+            <form id="registerForm" class="auth-form">
+                <h2>Create Account</h2>
+                <input type="text" placeholder="Full Name" required>
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Main App (hidden until login) -->
+    <div id="app" style="display: none;">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-users"></i>
+                    <span>SocialConnect</span>
+                </div>
+                <div class="nav-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search users..." id="searchUsers">
+                </div>
+                <div class="nav-icons">
+                    <div class="notification-icon" id="notificationIcon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notificationBadge">0</span>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <h4>Notifications</h4>
+                            <div id="notificationList"></div>
+                        </div>
+                    </div>
+                    <div class="user-menu">
+                        <img id="navProfilePic" src="" alt="Profile">
+                        <div class="dropdown-menu">
+                            <a href="#" id="viewProfileBtn"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#" id="settingsBtn"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="main-container">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="profile-card">
+                    <div class="cover-photo" id="coverPhoto"></div>
+                    <div class="profile-info">
+                        <img id="profilePic" class="profile-pic" src="" alt="Profile">
+                        <h3 id="userName"></h3>
+                        <p id="userBio"></p>
+                        <div class="stats">
+                            <div><span id="friendsCount">0</span> Friends</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="friends-list">
+                    <h3><i class="fas fa-user-friends"></i> Friends</h3>
+                    <div id="friendsList"></div>
+                </div>
+            </aside>
+            
+            <!-- Main Feed -->
+            <main class="feed">
+                <div class="create-post">
+                    <img id="postProfilePic" class="post-avatar" src="" alt="">
+                    <textarea id="postContent" placeholder="What's on your mind?"></textarea>
+                    <div class="post-actions">
+                        <button id="addMediaBtn"><i class="fas fa-image"></i> Add Photo</button>
+                        <button id="submitPostBtn"><i class="fas fa-paper-plane"></i> Post</button>
+                    </div>
+                    <input type="file" id="mediaInput" accept="image/*" style="display: none;">
+                </div>
+                
+                <div class="posts-container" id="postsContainer"></div>
+            </main>
+            
+            <!-- Right Sidebar -->
+            <aside class="right-sidebar">
+                <div class="friend-requests">
+                    <h3><i class="fas fa-user-plus"></i> Friend Requests</h3>
+                    <div id="friendRequestsList"></div>
+                </div>
+                
+                <div class="suggestions">
+                    <h3><i class="fas fa-users"></i> People You May Know</h3>
+                    <div id="suggestionsList"></div>
+                </div>
+            </aside>
+        </div>
+        
+        <!-- Profile Modal -->
+        <div id="profileModal" class="modal">
+            <div class="modal-content large">
+                <span class="close">&times;</span>
+                <div id="profileView"></div>
+            </div>
+        </div>
+        
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Privacy Settings</h2>
+                <div class="settings-form">
+                    <label>Profile Privacy:</label>
+                    <select id="privacySetting">
+                        <option value="public">Public (Everyone can see)</option>
+                        <option value="friends">Friends Only</option>
+                        <option value="private">Private (Only me)</option>
+                    </select>
+                    <button id="saveSettingsBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>
